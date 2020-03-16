@@ -5,7 +5,7 @@ namespace crowdfunding.Data
 {
     public class CrowdfundingDbContext : DbContext
     {
-        CrowdfundingDbContext(DbContextOptions<CrowdfundingDbContext> options) : base(options)
+        public CrowdfundingDbContext(DbContextOptions<CrowdfundingDbContext> options) : base(options)
         {
         }
 

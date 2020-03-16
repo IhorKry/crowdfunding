@@ -25,7 +25,7 @@ namespace crowdfunding
 
             services.AddDbContext<CrowdfundingDbContext>(options =>
                 options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("CrowdfundingDbContext")));
 
             services.AddControllersWithViews();
 
