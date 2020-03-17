@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using crowdfunding.Data;
 using crowdfunding.Models;
 
@@ -12,6 +14,11 @@ namespace crowdfunding.Services
             Context = context;
         }
 
+        public List<Aim> GetAims()
+        {
+            return Context.Aims.ToList();
+        }
+
         public Aim CreateAim(Aim aim)
         {
             Context.Aims.Add(aim);
@@ -24,9 +31,8 @@ namespace crowdfunding.Services
             return Context.Aims.Find(id);
         }
 
-        public void DeleteAimById(int id)
+        public void DeleteAimById(Aim aim)
         {
-            var aim = Context.Aims.Find(id);
             Context.Aims.Remove(aim);
             Context.SaveChanges();
         }

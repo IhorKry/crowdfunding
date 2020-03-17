@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using crowdfunding.Services;
 
 namespace crowdfunding
 {
@@ -34,6 +35,8 @@ namespace crowdfunding
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped<AimService, AimService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +53,7 @@ namespace crowdfunding
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
