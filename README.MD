@@ -47,6 +47,7 @@
 # REST API приложения
 
 - Aim
-  - Create aim : ``POST /api/aim``
-  - Get aim: ``GET /api/aim/2``
-  - Delete aim: ``DELETE /api/aim/2``
+  - Create aim : ``POST /api/aims``
+  - Get all aims: ``GET /api/aims``
+  - Get aim: ``GET /api/aims/2``
+  - Delete aim: ``DELETE /api/aims/2``
