@@ -14,24 +14,24 @@ namespace crowdfunding.Services
             Context = context;
         }
 
-        public List<Aim> GetAims()
+        public List<Aim> All()
         {
             return Context.Aims.ToList();
         }
 
-        public Aim CreateAim(Aim aim)
+        public Aim Create(Aim aim)
         {
             Context.Aims.Add(aim);
             Context.SaveChanges();
             return aim;
         }
 
-        public Aim GetAimById(int id)
+        public Aim GetById(int id)
         {
             return Context.Aims.Find(id);
         }
 
-        public void DeleteAimById(Aim aim)
+        public void Delete(Aim aim)
         {
             Context.Aims.Remove(aim);
             Context.SaveChanges();

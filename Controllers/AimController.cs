@@ -20,7 +20,7 @@ namespace crowdfunding.Controllers
         [HttpPost]
         public ActionResult Create(Aim aim)
         {
-            return Ok(Service.CreateAim(aim));
+            return Ok(Service.Create(aim));
         }
 
         // TODO: Think about get all aims possibility 
@@ -28,14 +28,14 @@ namespace crowdfunding.Controllers
         [HttpGet]
         public List<Aim> GetAims()
         {
-            return Service.GetAims();
+            return Service.All();
         }
 
         // GET api/aims/2
         [HttpGet("{id}")]
         public ActionResult<Aim> GetById(int id)
         {
-            var result = Service.GetAimById(id);
+            var result = Service.GetById(id);
 
             if (result == null) return NotFound();
 
@@ -47,11 +47,11 @@ namespace crowdfunding.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteById(int id)
         {
-            var result = Service.GetAimById(id);
+            var result = Service.GetById(id);
 
             if (result == null) return NotFound();
 
-            Service.DeleteAimById(result);
+            Service.Delete(result);
             return NoContent();
         }
     }
