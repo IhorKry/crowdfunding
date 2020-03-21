@@ -24,10 +24,10 @@ namespace crowdfunding.Controllers
         }
 
         // POST api/backers
-        [HttpPost]
-        public ActionResult Create(Backer backer)
-        {
-            return Ok(Service.Create(backer));
-        }
+        // [HttpPost]
+        // public ActionResult Create(Backer backer)
+        // {
+        //     return Ok(Service.Create(backer));
+        // }
     }
 }

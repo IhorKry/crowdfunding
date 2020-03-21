@@ -50,5 +50,18 @@ namespace crowdfunding.Services
 
             return user;
         }
+
+        public User ActivateBacker(User user)
+        {
+            var backer = new Backer();
+
+            Context.Backers.Add(backer);
+            Context.SaveChanges();
+
+            user.BackerId = backer.Id;
+            Context.SaveChanges();
+
+            return user;
+        }
     }
 }

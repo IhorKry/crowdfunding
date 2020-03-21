@@ -30,8 +30,8 @@ namespace crowdfunding.Controllers
             return Ok(Service.Create(user));
         }
 
-        // PUT /api/users/2?activateFounder
-        [HttpPut("{userId}")]
+        // PUT /api/users/2/activateFounder
+        [HttpPut("{userId}/activateFounder")]
         public ActionResult<User> ActivateFounder(int userId)
         {
             var user = Service.GetById(userId);
@@ -42,5 +42,16 @@ namespace crowdfunding.Controllers
             return Ok(Service.ActivateFounder(user));
         }
 
+        // PUT /api/users/2/activateBacker
+        [HttpPut("{userId}/activateBacker")]
+        public ActionResult<User> ActivateBacker(int userId)
+        {
+            var user = Service.GetById(userId);
+
+            if (user == null) return NotFound();
+            if (user.BackerId != 0) return BadRequest("User is already backer");
+
+            return Ok(Service.ActivateBacker(user));
+        }
     }
 }
