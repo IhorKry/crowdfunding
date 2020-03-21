@@ -9,8 +9,8 @@ using crowdfunding.Data;
 namespace crowdfunding.Migrations
 {
     [DbContext(typeof(CrowdfundingDbContext))]
-    [Migration("20200316150452_Initial")]
-    partial class Initial
+    [Migration("20200321151747_ReworkProjectModels")]
+    partial class ReworkProjectModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,19 +24,17 @@ namespace crowdfunding.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("FounderId")
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("FounderId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("SumToClose")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("FounderId");
 
                     b.ToTable("Aims");
                 });
@@ -49,7 +47,7 @@ namespace crowdfunding.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("backers");
+                    b.ToTable("Backers");
                 });
 
             modelBuilder.Entity("crowdfunding.Models.Founder", b =>
@@ -83,10 +81,6 @@ namespace crowdfunding.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AimId");
-
-                    b.HasIndex("BackerId");
-
                     b.ToTable("Transactions");
                 });
 
@@ -102,31 +96,13 @@ namespace crowdfunding.Migrations
                     b.Property<int>("FounderId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("crowdfunding.Models.Aim", b =>
-                {
-                    b.HasOne("crowdfunding.Models.Founder", null)
-                        .WithMany("Aims")
-                        .HasForeignKey("FounderId");
-                });
-
-            modelBuilder.Entity("crowdfunding.Models.Transaction", b =>
-                {
-                    b.HasOne("crowdfunding.Models.Aim", "Aim")
-                        .WithMany("TransactionHistory")
-                        .HasForeignKey("AimId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("crowdfunding.Models.Backer", "Backer")
-                        .WithMany("TransactionHistory")
-                        .HasForeignKey("BackerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

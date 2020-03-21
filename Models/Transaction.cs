@@ -6,12 +6,13 @@ namespace crowdfunding.Models
     public class Transaction
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Aim is required")]
-        public Aim Aim { get; set; }
+        [Required(ErrorMessage = "AimId is required")]
+        public int AimId { get; set; }
+        [Required(ErrorMessage = "BackerId is required")]
+        public int BackerId { get; set; }
         [Required(ErrorMessage = "Amount is required")]
         public decimal Amount { get; set; }
-        [Required(ErrorMessage = "Backer is required")]
-        public Backer Backer { get; set; }
+
         [Required(ErrorMessage = "Date is required")]
         public DateTime Date { get; set; }
 
@@ -19,11 +20,11 @@ namespace crowdfunding.Models
         {
         }
 
-        public Transaction(Aim aim, decimal amount, Backer backer, DateTime date)
+        public Transaction(int aimId, int backerId, decimal amount, DateTime date)
         {
-            Aim = aim;
+            AimId = aimId;
+            BackerId = backerId;
             Amount = amount;
-            Backer = backer;
             Date = date;
         }
     }

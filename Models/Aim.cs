@@ -9,19 +9,20 @@ namespace crowdfunding.Models
         [Required(ErrorMessage = "Name is required")]
         [MinLength(3, ErrorMessage = "Name length must be more then 3")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "SumToClose is required")]
-        public decimal SumToClose { get; set; }
-        public List<Transaction> TransactionHistory { get; set; }
+        [Required(ErrorMessage = "Amount is required")]
+        public decimal Amount { get; set; }
+        [Required(ErrorMessage = "FounderId is required")]
+        public int FounderId { get; set; }
 
         public Aim()
         {
-            TransactionHistory = new List<Transaction>();
         }
 
-        public Aim(string name, decimal sumToClose) : this()
+        public Aim(string name, decimal amount, int founderId)
         {
             Name = name;
-            SumToClose = sumToClose;
+            Amount = amount;
+            FounderId = founderId;
         }
     }
 }
