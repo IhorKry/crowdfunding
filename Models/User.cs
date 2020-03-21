@@ -14,11 +14,9 @@ namespace crowdfunding.Models
         {
         }
 
-        public User(string name, int founderId, int backerId)
+        public User(string name)
         {
             Name = name;
-            FounderId = founderId;
-            BackerId = backerId;
         }
     }
 }

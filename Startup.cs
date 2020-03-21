@@ -40,6 +40,7 @@ namespace crowdfunding
             services.AddScoped<FounderService, FounderService>();
             services.AddScoped<BackerService>();
             services.AddScoped<TransactionService>();
+            services.AddScoped<UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
