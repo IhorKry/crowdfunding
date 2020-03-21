@@ -46,10 +46,10 @@ namespace crowdfunding.Controllers
         }        
 
         // POST api/founders
-        [HttpPost]
-        public ActionResult Create(Founder founder)
-        {
-            return Ok(Service.Create(founder));
-        }
+        // [HttpPost]
+        // public ActionResult Create(Founder founder)
+        // {
+        //     return Ok(Service.Create(founder));
+        // }
     }
 }

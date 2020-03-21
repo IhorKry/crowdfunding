@@ -28,6 +28,19 @@ namespace crowdfunding.Controllers
         public ActionResult Create(User user)
         {
             return Ok(Service.Create(user));
-        }        
+        }
+
+        // PUT /api/users/2?activateFounder
+        [HttpPut("{userId}")]
+        public ActionResult<User> ActivateFounder(int userId)
+        {
+            var user = Service.GetById(userId);
+
+            if (user == null) return NotFound();
+            if (user.FounderId != 0) return BadRequest("User is already founder");
+
+            return Ok(Service.ActivateFounder(user));
+        }
+
     }
 }

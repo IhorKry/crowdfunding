@@ -28,7 +28,7 @@ namespace crowdfunding.Services
 
         public User GetById(int id)
         {
-            var user = Context.Users.Find(id); 
+            var user = Context.Users.Find(id);
             return user;
         }
 
@@ -36,6 +36,19 @@ namespace crowdfunding.Services
         {
             Context.Users.Remove(user);
             Context.SaveChanges();
-        }        
+        }
+
+        public User ActivateFounder(User user)
+        {
+            var founder = new Founder();
+
+            Context.Founders.Add(founder);
+            Context.SaveChanges();
+
+            user.FounderId = founder.Id;
+            Context.SaveChanges();
+
+            return user;
+        }
     }
 }
