@@ -38,6 +38,7 @@ namespace crowdfunding
 
             services.AddScoped<AimService, AimService>();
             services.AddScoped<FounderService, FounderService>();
+            services.AddScoped<BackerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
