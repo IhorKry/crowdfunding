@@ -14,9 +14,9 @@ namespace crowdfunding.Services
             Context = context;
         }
 
-        public List<Founder> All()
+        public List<Transaction> All()
         {
-            return Context.Founders.ToList();
+            return Context.Transactions.ToList();
         }
 
         public Transaction Create(Transaction transaction)
