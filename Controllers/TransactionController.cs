@@ -27,6 +27,12 @@ namespace crowdfunding.Controllers
         [HttpPost]
         public ActionResult Create(Transaction transaction)
         {
+            bool isAimExist = Service.IsAimExist(transaction.AimId);
+            if (!isAimExist) return NotFound("aim not found");
+
+            bool isBackerExist = Service.IsBackerExist(transaction.BackerId);
+            if (!isBackerExist) return NotFound("backer not found");
+
             return Ok(Service.Create(transaction));
         }
     }

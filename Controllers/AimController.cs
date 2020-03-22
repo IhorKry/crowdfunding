@@ -20,6 +20,9 @@ namespace crowdfunding.Controllers
         [HttpPost]
         public ActionResult Create(Aim aim)
         {
+            bool isFounderExist = Service.IsFounderExist(aim.FounderId);
+            if (!isFounderExist) return NotFound("founder not found");
+
             return Ok(Service.Create(aim));
         }
 
@@ -35,11 +38,22 @@ namespace crowdfunding.Controllers
         [HttpGet("{id}")]
         public ActionResult<Aim> GetById(int id)
         {
-            var result = Service.GetById(id);
+            var aim = Service.GetById(id);
 
-            if (result == null) return NotFound();
+            if (aim == null) return NotFound();
 
-            return Ok(result);
+            return Ok(aim);
+        }
+
+        // GET api/aims/2/report
+        [HttpGet("{id}/report")]
+        public ActionResult<AimReport> GenerateReport(int id)
+        {
+            var aim = Service.GetById(id);
+
+            if (aim == null) return NotFound();
+
+            return Ok(Service.GenerateReport(aim));
         }
 
         // TODO: Think about delete possibility 
@@ -47,11 +61,11 @@ namespace crowdfunding.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteById(int id)
         {
-            var result = Service.GetById(id);
+            var aim = Service.GetById(id);
 
-            if (result == null) return NotFound();
+            if (aim == null) return NotFound();
 
-            Service.Delete(result);
+            Service.Delete(aim);
             return NoContent();
         }
     }

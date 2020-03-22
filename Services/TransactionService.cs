@@ -25,5 +25,15 @@ namespace crowdfunding.Services
             Context.SaveChanges();
             return transaction;
         }
+
+        public bool IsAimExist(int id)
+        {
+            return Context.Aims.Any(aim => aim.Id == id);
+        }
+
+        public bool IsBackerExist(int id)
+        {
+            return Context.Backers.Any(backer => backer.Id == id);
+        }
     }
 }
